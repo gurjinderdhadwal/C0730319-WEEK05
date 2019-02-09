@@ -1,80 +1,95 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace FRI_FEB_8
+namespace week_5
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Elevator e = new Elevator();
-            e.setup();
-            e.TraverseList();
+            elevator e = new elevator();
+            e.run();
+            e.traverseList();
+            Console.ReadKey();
+
+
         }
-    }
-    class Node
-    {
-        public Node() { }
-        public Node elevatorUp;
-        public string FloorNumber;
+
     }
 
-    class Department
+    class node
     {
-        public Department(string dept_name)
+        public node() { }
+        public node floor;
+        public node elevatorup;
+        public string floornumber;
+    }
+
+    class department
+    {
+        public department(string dept_name)
         {
-            DepartmentDescription = dept_name;
+            departmentDescription = dept_name;
         }
-        public Department aDepartment;
-
-        public string DepartmentDescription;
+        public department nextdepartment;
+        public department previousdepartment;
+        public string departmentDescription;
     }
-
-    class DepartmentStore
+    class departmentstore
     {
         public void InitializeDepartments()
         {
-            Department Kitchenware = new Department("Kitchenware");
-            Department Books = new Department("Books");
-
+            department kitchenware = new department("Kitchenware");
+            kitchenware.nextdepartment = book;
+            department book = new department("books");
         }
-
     }
-    //ff
-    class Elevator
+    class elevator
     {
-        Node Head;
-        Node FirstFloor;
-        Node SecondFloor;
-        Node ThirdFloor;
-        Node FourthFloor;
+        public node head;
+        public node firstfloor;
+        public node secondfloor;
+        public node thirdfloor;
+        public node fourthfloor;
 
-        public void setup()
+        public void run()
         {
-            FirstFloor = new Node();
-            SecondFloor = new Node();
-            ThirdFloor = new Node();
-            FourthFloor = new Node();
-            Head = FirstFloor;
-            FirstFloor.FloorNumber = "First Floor";
-            FirstFloor.elevatorUp = SecondFloor;
-            SecondFloor.FloorNumber = "Second Floor";
-            SecondFloor.elevatorUp = ThirdFloor;
-            ThirdFloor.FloorNumber = "Third Floor";
-            ThirdFloor.elevatorUp = FourthFloor;
-            FourthFloor.FloorNumber = "Fourth Floor";
-            FourthFloor.elevatorUp = null;
+            firstfloor = new node();
+            secondfloor = new node();
+            thirdfloor = new node();
+            fourthfloor = new node();
+
+            head = firstfloor;
+            firstfloor.floornumber = "First Floor";
+            Console.WriteLine("The floor number is {0}", firstfloor.floornumber);
+            firstfloor.elevatorup = secondfloor;
+            secondfloor.floornumber = "Second Floor";
+            Console.WriteLine("The floor number is {0}", secondfloor.floornumber);
+            secondfloor.elevatorup = thirdfloor;
+            thirdfloor.floornumber = "Third Floor";
+            Console.WriteLine("The floor number is {0}", thirdfloor.floornumber);
+            thirdfloor.elevatorup = fourthfloor;
+            fourthfloor.floornumber = "Fourth Floor";
+            Console.WriteLine("The floor number is {0}", fourthfloor.floornumber);
+            fourthfloor.elevatorup = null;
+
+
+
         }
-        public void TraverseList()
+
+
+        public void traverseList()
         {
-            Node temp;
-            temp = Head;
+            node temp = head;
 
-            // where am I going to start?
-
+            Console.WriteLine("The first floor is " + head.floornumber);
             while (temp != null)
             {
-                Console.WriteLine(temp.FloorNumber);
-                temp = temp.elevatorUp;
+                Console.WriteLine(temp.floornumber);
+                temp = temp.elevatorup;
 
             }
         }
