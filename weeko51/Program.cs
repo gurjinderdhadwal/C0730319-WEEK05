@@ -11,7 +11,6 @@ namespace FRI_FEB_8
             e.TraverseList();
         }
     }
-
     class Node
     {
         public Node() { }
@@ -21,7 +20,23 @@ namespace FRI_FEB_8
 
     class Department
     {
+        public Department(string dept_name)
+        {
+            DepartmentDescription = dept_name;
+        }
         public Department aDepartment;
+
+        public string DepartmentDescription;
+    }
+
+    class DepartmentStore
+    {
+        public void InitializeDepartments()
+        {
+            Department Kitchenware = new Department("Kitchenware");
+            Department Books = new Department("Books");
+
+        }
 
     }
 
@@ -49,7 +64,6 @@ namespace FRI_FEB_8
             FourthFloor.FloorNumber = "Fourth Floor";
             FourthFloor.elevatorUp = null;
         }
-
         public void TraverseList()
         {
             Node temp;
@@ -63,7 +77,6 @@ namespace FRI_FEB_8
                 temp = temp.elevatorUp;
 
             }
-
         }
     }
 }
